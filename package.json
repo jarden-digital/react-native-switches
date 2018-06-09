@@ -1,0 +1,37 @@
+{
+  "name": "react-native-switches",
+  "version": "1.0.0",
+  "description": "React native switches component",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "compile": "npm run build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Haskkor/react-native-switches.git"
+  },
+  "author": "Jeremy Farnault <farnaultjeremy@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Haskkor/react-native-switches/issues"
+  },
+  "homepage": "https://github.com/Haskkor/react-native-switches#readme",
+  "dependencies": {
+    "@types/d3-ease": "^1.0.7",
+    "@types/lodash": "^4.14.109",
+    "@types/react": "^16.3.17",
+    "@types/react-native": "^0.55.17",
+    "d3-ease": "^1.0.3",
+    "lodash": "^4.17.10",
+    "react": "^16.4.0",
+    "react-move": "^2.7.0",
+    "react-native": "^0.55.4",
+    "typescript": "^2.9.1"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "react-native": "*"
+  }
+}
