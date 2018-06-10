@@ -4,10 +4,27 @@ import {Animate} from 'react-move'
 import {easeQuadIn} from 'd3-ease'
 
 export type IProps = {
-  shape: Shapes
-  defaultValue?: boolean
-  colorSwitchOn?: string
+  animationDuration?: number
+  buttonColor?: string
+  buttonHeight?: number
+  buttonOffsetLeft?: number
+  buttonOffsetRight?: number
+  buttonWidth?: number
   colorSwitchOff?: string
+  colorSwitchOn?: string
+  colorTextOff?: string
+  colorTextOn?: string
+  defaultValue?: boolean
+  easingFunction?: any // fixme any
+  onChange?: (switchOn: boolean) => void
+  shape: Shapes
+  sliderHeight?: number
+  sliderWidth?: number
+  spaceBetween?: number
+  textFont?: string
+  textOff?: string
+  textOn?: string
+  textSize?: number
 }
 
 enum Shapes {
@@ -19,6 +36,23 @@ export type IState = {
   switchOn: boolean
 }
 
+const defaultButtonOffset = 2
+const defaultButtonSize = 32
+const defaultButtonColor = '#FFF'
+const defaultColorSwitchOff = '#D3D5DA'
+const defaultColorSwitchOn = '#96CBCE'
+const defaultColorTextOff = '#000' // todo put base color avec 60% opacity
+const defaultColorTextOn = '#FFF'
+const defaultDuration = 300
+const defaultEasingFunction = easeQuadIn
+const defaultSpaceBetween = 8
+const defaultSwitchHeight = 36
+const defaultSwitchWidth = 70
+const defaultTextFont = 'courier'
+const defaultTextOff = 'off'
+const defaultTextOn = 'on'
+const defaultTextSize = 16
+
 class Switches extends React.PureComponent<IProps, IState> {
 
   constructor(props: IProps) {
@@ -26,6 +60,12 @@ class Switches extends React.PureComponent<IProps, IState> {
     this.state = {
       switchOn: this.props.defaultValue || true
     }
+    this.handleSwitch = this.handleSwitch.bind(this)
+  }
+
+  handleSwitch = () => {
+    if (this.props.onChange) this.props.onChange(!this.state.switchOn)
+    this.setState({switchOn: !this.state.switchOn})
   }
 
   renderLineSwitch = () => {
@@ -33,39 +73,68 @@ class Switches extends React.PureComponent<IProps, IState> {
   }
 
   renderPillSwitch = () => {
-    // Easing function in props or default
-    // Starting value in props
-    // Colors on and off
-    const onColor = this.props.colorSwitchOn || '#96CBCE'
-    const offColor = this.props.colorSwitchOff || '#D3D5DA'
+    const onColor = this.props.colorSwitchOn || defaultColorSwitchOn
+    const offColor = this.props.colorSwitchOff || defaultColorSwitchOff
+    const leftPosition = this.props.buttonOffsetLeft || defaultButtonOffset
+    const sliderWidth = this.props.sliderWidth || defaultSwitchWidth
+    const sliderHeight = this.props.sliderHeight || defaultSwitchHeight
+    const buttonSize = this.props.buttonWidth || defaultButtonSize
+    const buttonOffSetRight = this.props.buttonOffsetRight || defaultButtonOffset
+    const rightPosition = sliderWidth - buttonSize - buttonOffSetRight
+    const duration = this.props.animationDuration || defaultDuration
+    const easingFunction = this.props.easingFunction || defaultEasingFunction
+    const textFont = this.props.textFont || defaultTextFont
+    const textSize = this.props.textSize || defaultTextSize
+    const colorTextOn = this.props.colorTextOn || defaultColorTextOn
+    const colorTextOff = this.props.colorTextOff || defaultColorTextOff
+    const textOn = this.props.textOn || defaultTextOn
+    const textOff = this.props.textOff || defaultTextOff
+    const spaceBetween = this.props.spaceBetween || defaultSpaceBetween
+    const buttonColor = this.props.buttonColor || defaultButtonColor
     return (<Animate
       show={true}
       start={{
         color: this.state.switchOn ? onColor : offColor,
-        positionButton: !this.state.switchOn ? 2 : 36,
-        opacitySubLabel: !this.state.switchOn ? 0 : 1,
-        opacityPep: this.state.switchOn ? 1 : 0
+        positionButton: this.state.switchOn ? rightPosition : leftPosition,
+        opacityChildren: this.state.switchOn ? 1 : 0
       }}
       update={{
-        color: [this.state.switchOn ? '#96CBCE' : '#D3D5DA'],
-        positionButton: [!this.state.switchOn ? 2 : 36],
-        opacitySubLabel: [!this.state.switchOn ? 0 : 1],
-        opacityPep: this.state.switchOn ? [1] : [0],
-        timing: {duration: 300, ease: easeQuadIn}
+        color: [this.state.switchOn ? onColor : offColor],
+        positionButton: [this.state.switchOn ? rightPosition : leftPosition],
+        opacityChildren: this.state.switchOn ? [1] : [0],
+        timing: {duration: duration, ease: easingFunction}
       }}>
       {(state: any) => (
-        <View style={{width: '100%'}}>
-          <View style={[pagesStyles.section, {alignItems: 'flex-end', width: '100%'}]}>
+        <View>
+          <View style={{width: '100%'}}>
             <TouchableOpacity activeOpacity={1} onPress={() => this.handleSwitch()}
-                              style={[{backgroundColor: state.color}, pagesStyles.alternativeSwitch]}>
+                              style={{
+                                backgroundColor: state.color, height: sliderHeight, width: sliderWidth,
+                                borderRadius: sliderHeight / 2, position: 'relative', justifyContent: 'center',
+                                alignItems: 'center'
+                              }}>
               <View style={{flexDirection: 'row'}}>
-                <Text style={pagesStyles.textAlternativeSwitchOn}>on</Text>
-                <Text style={pagesStyles.textAlternativeSwitchOff}>off</Text>
+                <Text
+                  style={{fontFamily: textFont, fontSize: textSize, color: colorTextOn, marginRight: spaceBetween / 2}}>
+                  {textOn}
+                </Text>
+                <Text
+                  style={{fontFamily: textFont, fontSize: textSize, color: colorTextOff, marginLeft: spaceBetween / 2}}>
+                  {textOff}
+                </Text>
               </View>
-              <View style={[{left: state.positionButton}, pagesStyles.buttonAlternativeSwitch]}/>
+              <View style={{
+                left: state.positionButton,
+                position: 'absolute',
+                backgroundColor: buttonColor,
+                width: buttonSize,
+                height: buttonSize,
+                borderRadius: buttonSize / 2
+              }}/>
             </TouchableOpacity>
           </View>
-          <View style={[pagesStyles.section, {opacity: state.opacityPep}]}>
+          <View style={{opacity: state.opacityChildren}}>
+            {this.props.children}
           </View>
         </View>
       )}
@@ -99,80 +168,6 @@ let styles = StyleSheet.create({
     flex: 1
   }
 })
-
-
-// FAT ONE
-
-//   <Animate
-// show={true}
-// start={{
-//   color: this.state.switchOn ? '#96CBCE' : '#D3D5DA',
-//     positionButton: !this.state.switchOn ? 2 : 36,
-//     opacitySubLabel: !this.state.switchOn ? 0 : 1,
-//     opacityPep: this.state.switchOn ? 1 : 0
-// }}
-// update={{
-//   color: [this.state.switchOn ? '#96CBCE' : '#D3D5DA'],
-//     positionButton: [!this.state.switchOn ? 2 : 36],
-//     opacitySubLabel: [!this.state.switchOn ? 0 : 1],
-//     opacityPep: this.state.switchOn ? [1] : [0],
-//     timing: {duration: 300, ease: easeQuadIn}
-// }}>
-// {(state: any) => (
-//   <View style={{width: '100%'}}>
-//     <View style={[pagesStyles.section, {alignItems: 'flex-end', width: '100%'}]}>
-//       <TouchableOpacity activeOpacity={1} onPress={() => this.handleSwitch()}
-//                         style={[{backgroundColor: state.color}, pagesStyles.alternativeSwitch]}>
-//         <View style={{flexDirection: 'row'}}>
-//           <Text style={pagesStyles.textAlternativeSwitchOn}>on</Text>
-//           <Text style={pagesStyles.textAlternativeSwitchOff}>off</Text>
-//         </View>
-//         <View style={[{left: state.positionButton}, pagesStyles.buttonAlternativeSwitch]}/>
-//       </TouchableOpacity>
-//     </View>
-//     <View style={[pagesStyles.section, {opacity: state.opacityPep}]}>
-//     </View>
-//   </View>
-// )}
-// </Animate>
-
-
-// buttonAlternativeSwitch: {
-//   position: 'absolute',
-//     backgroundColor: colors.white,
-//     width: 32,
-//     height: 32,
-//     borderRadius: 16
-// },
-// textAlternativeSwitchOn: {
-//   fontFamily: grid.font,
-//     fontSize: grid.unit,
-//     color: colors.white,
-//     marginRight: 4
-// },
-// textAlternativeSwitchOff: {
-//   fontFamily: grid.font,
-//     fontSize: grid.unit,
-//     color: colors.base,
-//     opacity: grid.lowOpacity,
-//     marginLeft: 4
-// },
-// alternativeSwitch: {
-//   height: 36,
-//     width: 70,
-//     borderRadius: 18,
-//     position: 'relative',
-//     justifyContent: 'center',
-//     alignItems: 'center'
-// },
-// viewAlternativeSwitch: {
-//   justifyContent: 'space-between',
-//     alignItems: 'center',
-//     marginBottom: grid.unit,
-//     flexDirection: 'row',
-//     width: '100%'
-// }
-
 
 // SKINNY ONE
 
@@ -219,7 +214,6 @@ let styles = StyleSheet.create({
 //     borderRadius: 20,
 //     backgroundColor: 'rgb(150, 203, 206)'
 // },
-
 
 
 //   <Switch
