@@ -18,17 +18,19 @@
     "url": "https://github.com/Haskkor/react-native-switches/issues"
   },
   "homepage": "https://github.com/Haskkor/react-native-switches#readme",
-  "dependencies": {
+  "devDependencies": {
     "@types/d3-ease": "^1.0.7",
     "@types/lodash": "^4.14.109",
     "@types/react": "^16.3.17",
     "@types/react-native": "^0.55.17",
-    "d3-ease": "^1.0.3",
-    "lodash": "^4.17.10",
     "react": "^16.4.0",
-    "react-move": "^2.7.0",
     "react-native": "^0.55.4",
     "typescript": "^2.9.1"
+  },
+  "dependencies": {
+    "d3-ease": "^1.0.3",
+    "lodash": "^4.17.10",
+    "react-move": "^2.7.0"
   },
   "peerDependencies": {
     "react": "*",
