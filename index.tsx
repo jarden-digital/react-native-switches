@@ -10,7 +10,6 @@ export type IProps = {
   buttonOffsetLeft?: number
   buttonOffsetRight?: number
   buttonWidth?: number
-  colorSwitch?: string
   colorSwitchOff?: string
   colorSwitchOn?: string
   colorTextOff?: string
@@ -57,8 +56,8 @@ const defaultShowText = true
 const defaultSpaceBetweenLine = 20
 const defaultSpaceBetweenPill = 8
 const defaultSwitchHeightLine = 6
-const defaultSwitchWidthLine = 25
 const defaultSwitchHeightPill = 36
+const defaultSwitchWidthLine = 25
 const defaultSwitchWidthPill = 70
 const defaultTextFont = 'courier'
 const defaultTextOffLine = 'No'
@@ -94,7 +93,8 @@ class Switches extends React.PureComponent<IProps, IState> {
     const sliderWidth = this.props.sliderWidth || defaultSwitchWidthLine
     const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenLine
     const buttonColor = this.props.buttonColor || defaultButtonColorLine
-    const colorSwitch = this.props.colorSwitch || defaultColorSwitch
+    const colorSwitchOn = this.props.colorSwitchOn || defaultColorSwitch
+    const colorSwitchOff = this.props.colorSwitchOff || defaultColorSwitch
     const showText = this.props.showText || defaultShowText
     return (
       <Animate
@@ -122,7 +122,7 @@ class Switches extends React.PureComponent<IProps, IState> {
                 <View style={{
                   height: sliderHeight,
                   width: sliderWidth,
-                  backgroundColor: colorSwitch,
+                  backgroundColor: this.props.value ? colorSwitchOn : colorSwitchOff,
                   borderRadius: sliderHeight / 2
                 }}/>
                 <TouchableOpacity activeOpacity={1} disabled={disabled} style={{
