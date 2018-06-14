@@ -33,28 +33,28 @@ import Switches from 'react-native-switches'
 | Key | Description | Default | Required | Type |
 |---|---|---|---|---|
 |**`animationDuration`**|Duration of the transition animation|`300`|`false`|`number`|
-|**`buttonColor`**||Line shape: `#96CBCE` / Pill shape: `#FFF`|`false`|`string`|
-|**`buttonHeight`**||Line shape: `20` / Pill shape: `32`|`false`|`number`|
-|**`buttonOffsetLeft`**||Line shape: `0` / Pill shape: `2`|`false`|`number`|
-|**`buttonOffsetRight`**||Line shape: `0` / Pill shape: `2`|`false`|`number`|
-|**`buttonWidth`**||Line shape: `20` / Pill shape: `32`|`false`|`number`|
-|**`colorSwitchOff`**||Line shape: `#E8EAEC` / Pill shape: `#D3D5DA`|`false`|`string`|
-|**`colorSwitchOn`**||Line shape: `#E8EAEC` / Pill shape: `#96CBCE`|`false`|`string`|
-|**`colorTextOff`**||Line shape: `#7BCDD0` / Pill shape: `#E8EAEC`|`false`|`string`|
-|**`colorTextOn`**||Line shape: `#445878` / Pill shape: `#FFF`|`false`|`string`|
-|**`disabled`**||`false`|`false`|`boolean`|
-|**`easingFunction`**||`easeQuadIn` [d3-ease function](https://github.com/d3/d3-ease#easeQuadIn)|`false`|`function`|
-|**`onChange`**||*None*|`true`|`function`|
-|**`shape`**||*None*|`true`|`Shapes` enum|
-|**`showText`**||`true`|`false`|`boolean`|
-|**`sliderHeight`**||Line shape: `8` / Pill shape: `36`|`false`|`number`|
-|**`sliderWidth`**||Line shape: `25` / Pill shape: `70`|`false`|`number`|
-|**`spaceBetween`**||Line shape: `20` / Pill shape: `8`|`false`|`number`|
-|**`textFont`**||`courier`|`false`|`string`|
-|**`textOff`**||Line shape: `No` / Pill shape: `off`|`false`|`string`|
-|**`textOn`**||Line shape: `Yes` / Pill shape: `on`|`false`|`string`|
-|**`textSize`**||`16`|`false`|`number`|
-|**`value`**||*None*|`true`|`boolean`|
+|**`buttonColor`**|Color of the button of the switch|Line shape: `#96CBCE` / Pill shape: `#FFF`|`false`|`string`|
+|**`buttonHeight`**|Height of the button of the switch|Line shape: `20` / Pill shape: `32`|`false`|`number`|
+|**`buttonOffsetLeft`**|Difference between the maximum left position of the button and the maximum left position of the slide|Line shape: `0` / Pill shape: `2`|`false`|`number`|
+|**`buttonOffsetRight`**|Difference between the maximum right position of the button and the maximum right position of the slide|Line shape: `0` / Pill shape: `2`|`false`|`number`|
+|**`buttonWidth`**|Width of the button of the switch|Line shape: `20` / Pill shape: `32`|`false`|`number`|
+|**`colorSwitchOff`**|Color of the slide when the switch is on off position|Line shape: `#E8EAEC` / Pill shape: `#D3D5DA`|`false`|`string`|
+|**`colorSwitchOn`**|Color of the slide when the switch is on on position|Line shape: `#E8EAEC` / Pill shape: `#96CBCE`|`false`|`string`|
+|**`colorTextOff`**|Color of the text when the switch is on off position|Line shape: `#7BCDD0` / Pill shape: `#E8EAEC`|`false`|`string`|
+|**`colorTextOn`**|Color of the text when the switch is on on position|Line shape: `#445878` / Pill shape: `#FFF`|`false`|`string`|
+|**`disabled`**|Boolean disabling the click on the button|`false`|`false`|`boolean`|
+|**`easingFunction`**|Easing function for the animation|`easeQuadIn` [d3-ease function](https://github.com/d3/d3-ease#easeQuadIn)|`false`|`function`|
+|**`onChange`**|Function triggered when the switch is tapped|*None*|`true`|`function`|
+|**`shape`**|Shape of the switch (`line` or `pill`)|*None*|`true`|`Shapes` enum|
+|**`showText`**|Boolean indicating if the text should be visible or not|`true`|`false`|`boolean`|
+|**`sliderHeight`**|Height of the slider of the switch|Line shape: `8` / Pill shape: `36`|`false`|`number`|
+|**`sliderWidth`**|Width of the slider of the switch|Line shape: `25` / Pill shape: `70`|`false`|`number`|
+|**`spaceBetween`**|Space between the two texts of the switch|Line shape: `20` / Pill shape: `8`|`false`|`number`|
+|**`textFont`**|Font used for the text of the switch|`courier`|`false`|`string`|
+|**`textOff`**|Text used for the `off` position of the switch|Line shape: `No` / Pill shape: `off`|`false`|`string`|
+|**`textOn`**|Text used for the `on` position of the switch|Line shape: `Yes` / Pill shape: `on`|`false`|`string`|
+|**`textSize`**|Size of the text|`16`|`false`|`number`|
+|**`value`**|Boolean value of the switch matching its position (`true` is `on`)|*None*|`true`|`boolean`|
 
 ## Contributing
 
