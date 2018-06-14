@@ -1,5 +1,5 @@
 # react-native-switches
-_ Customizable Switch components for react native_
+_Customizable Switch components for react native_
 
 Using:
 * _**[react-move](https://github.com/react-tools/react-move)**_ for animations
