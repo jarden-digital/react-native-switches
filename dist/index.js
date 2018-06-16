@@ -26,11 +26,11 @@ const defaultDisabledValue = false;
 const defaultDuration = 300;
 const defaultEasingFunction = d3_ease_1.easeQuadIn;
 const defaultShowText = true;
-const defaultSpaceBetweenLine = 20;
+const defaultSpaceBetweenLine = 10;
 const defaultSpaceBetweenPill = 10;
 const defaultSwitchHeightLine = 6;
 const defaultSwitchHeightPill = 36;
-const defaultSwitchWidthLine = 25;
+const defaultSwitchWidthLine = 30;
 const defaultSwitchWidthPill = 70;
 const defaultTextFont = 'courier';
 const defaultTextOffLine = 'No';
@@ -51,7 +51,7 @@ class Switches extends React.PureComponent {
             const buttonSize = this.props.buttonSize || defaultButtonSizeLine;
             const duration = this.props.animationDuration || defaultDuration;
             const colorTextOn = this.props.colorTextOn || defaultColorTextOnLine;
-            const disabled = !!this.props.disabled ? this.props.disabled : defaultDisabledValue;
+            const disabled = this.props.disabled || defaultDisabledValue;
             const colorTextOff = this.props.colorTextOff || defaultColorTextOffLine;
             const textFont = this.props.textFont || defaultTextFont;
             const textOn = this.props.textOn || defaultTextOnLine;
@@ -62,19 +62,19 @@ class Switches extends React.PureComponent {
             const buttonColor = this.props.buttonColor || defaultButtonColorLine;
             const colorSwitchOn = this.props.colorSwitchOn || defaultColorSwitch;
             const colorSwitchOff = this.props.colorSwitchOff || defaultColorSwitch;
-            const showText = !!this.props.showText ? this.props.showText : defaultShowText;
+            const showText = this.props.showText === false ? this.props.showText : defaultShowText;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     colorNo: this.props.value ? colorTextOff : colorTextOn,
                     colorYes: this.props.value ? colorTextOn : colorTextOff,
-                    positionButton: this.props.value ? sliderWidth - buttonOffsetRight : 0 + buttonOffsetLeft,
+                    positionButton: this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : 0 + buttonOffsetLeft,
                     opacityChildren: this.props.value ? 1 : 0
                 }, update: {
                     colorNo: [this.props.value ? colorTextOff : colorTextOn],
                     colorYes: [this.props.value ? colorTextOn : colorTextOff],
-                    positionButton: [this.props.value ? sliderWidth - buttonOffsetRight : 0 + buttonOffsetLeft],
+                    positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : 0 + buttonOffsetLeft],
                     opacityChildren: this.props.value ? [1] : [0],
                     timing: { duration: duration, ease: easingFunction }
-                } }, (state) => (React.createElement(react_native_1.View, null,
+                } }, (state) => (React.createElement(react_native_1.View, { style: { width: '100%' } },
                 React.createElement(react_native_1.View, { style: { justifyContent: 'center', alignItems: 'center', flexDirection: 'row' } },
                     showText && React.createElement(react_native_1.Text, { style: { fontFamily: textFont, color: state.colorNo, marginRight: spaceBetween / 2 } }, textOff),
                     React.createElement(react_native_1.View, { style: { paddingRight: spaceBetween / 2, paddingLeft: spaceBetween / 2 } },
@@ -94,7 +94,7 @@ class Switches extends React.PureComponent {
                                 backgroundColor: buttonColor
                             }, onPress: () => this.handleSwitch() })),
                     showText && React.createElement(react_native_1.Text, { style: { fontFamily: textFont, color: state.colorYes, marginLeft: spaceBetween / 2 } }, textOn)),
-                React.createElement(react_native_1.View, { style: { opacity: state.opacityChildren } })))));
+                React.createElement(react_native_1.View, { style: { opacity: state.opacityChildren } }, this.props.children)))));
         };
         this.renderPillSwitch = () => {
             const buttonOffSetRight = this.props.buttonOffsetRight || defaultButtonOffsetPill;
@@ -106,7 +106,7 @@ class Switches extends React.PureComponent {
             const sliderWidth = this.props.sliderWidth || defaultSwitchWidthPill;
             const rightPosition = sliderWidth - buttonSize - buttonOffSetRight;
             const duration = this.props.animationDuration || defaultDuration;
-            const disabled = !!this.props.disabled ? this.props.disabled : defaultDisabledValue;
+            const disabled = this.props.disabled || defaultDisabledValue;
             const easingFunction = this.props.easingFunction || defaultEasingFunction;
             const textFont = this.props.textFont || defaultTextFont;
             const textSize = this.props.textSize || defaultTextSize;
@@ -116,7 +116,7 @@ class Switches extends React.PureComponent {
             const textOff = this.props.textOff || defaultTextOffPill;
             const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill;
             const buttonColor = this.props.buttonColor || defaultButtonColorPill;
-            const showText = !!this.props.showText ? this.props.showText : defaultShowText;
+            const showText = this.props.showText === false ? this.props.showText : defaultShowText;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     color: this.props.value ? onColor : offColor,
                     positionButton: this.props.value ? rightPosition : leftPosition,
@@ -127,7 +127,7 @@ class Switches extends React.PureComponent {
                     opacityChildren: [this.props.value ? 1 : 0],
                     timing: { duration: duration, ease: easingFunction }
                 } }, (state) => (React.createElement(react_native_1.View, null,
-                React.createElement(react_native_1.View, null,
+                React.createElement(react_native_1.View, { style: { width: '100%' } },
                     React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, style: {
                             backgroundColor: state.color,
                             height: sliderHeight,

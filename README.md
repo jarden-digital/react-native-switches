@@ -58,3 +58,7 @@ import Switches from 'react-native-switches'
 ## Contributing
 
 Pull requests are welcome.
+
+
+
+// todo FIX THE DEFAULT VALUES AND INTEGRATE VIDEOS
