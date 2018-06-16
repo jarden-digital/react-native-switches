@@ -6,10 +6,9 @@ import {easeQuadIn} from 'd3-ease'
 export type IProps = {
   animationDuration?: number
   buttonColor?: string
-  buttonHeight?: number
+  buttonSize?: number
   buttonOffsetLeft?: number
   buttonOffsetRight?: number
-  buttonWidth?: number
   colorSwitchOff?: string
   colorSwitchOn?: string
   colorTextOff?: string
@@ -17,7 +16,7 @@ export type IProps = {
   disabled?: boolean
   easingFunction?: () => void
   onChange: () => void
-  shape: Shapes
+  shape: string
   showText?: boolean
   sliderHeight?: number
   sliderWidth?: number
@@ -54,7 +53,7 @@ const defaultDuration = 300
 const defaultEasingFunction = easeQuadIn
 const defaultShowText = true
 const defaultSpaceBetweenLine = 20
-const defaultSpaceBetweenPill = 8
+const defaultSpaceBetweenPill = 10
 const defaultSwitchHeightLine = 6
 const defaultSwitchHeightPill = 36
 const defaultSwitchWidthLine = 25
@@ -64,7 +63,7 @@ const defaultTextOffLine = 'No'
 const defaultTextOnLine = 'Yes'
 const defaultTextOffPill = 'off'
 const defaultTextOnPill = 'on'
-const defaultTextSize = 16
+const defaultTextSize = 14
 
 class Switches extends React.PureComponent<IProps, IState> {
 
@@ -81,10 +80,10 @@ class Switches extends React.PureComponent<IProps, IState> {
     const buttonOffsetLeft = this.props.buttonOffsetLeft || defaultButtonOffsetLine
     const buttonOffsetRight = this.props.buttonOffsetRight || defaultButtonOffsetLine
     const easingFunction = this.props.easingFunction || defaultEasingFunction
-    const buttonSize = this.props.buttonWidth || defaultButtonSizeLine
+    const buttonSize = this.props.buttonSize || defaultButtonSizeLine
     const duration = this.props.animationDuration || defaultDuration
     const colorTextOn = this.props.colorTextOn || defaultColorTextOnLine
-    const disabled = this.props.disabled || defaultDisabledValue
+    const disabled = !!this.props.disabled ? this.props.disabled : defaultDisabledValue
     const colorTextOff = this.props.colorTextOff || defaultColorTextOffLine
     const textFont = this.props.textFont || defaultTextFont
     const textOn = this.props.textOn || defaultTextOnLine
@@ -95,7 +94,7 @@ class Switches extends React.PureComponent<IProps, IState> {
     const buttonColor = this.props.buttonColor || defaultButtonColorLine
     const colorSwitchOn = this.props.colorSwitchOn || defaultColorSwitch
     const colorSwitchOff = this.props.colorSwitchOff || defaultColorSwitch
-    const showText = this.props.showText || defaultShowText
+    const showText = !!this.props.showText ? this.props.showText : defaultShowText
     return (
       <Animate
         show={true}
@@ -113,12 +112,12 @@ class Switches extends React.PureComponent<IProps, IState> {
           timing: {duration: duration, ease: easingFunction}
         }}>
         {(state: any) => (
-          <View style={{width: '100%'}}>
-            <View style={{justifyContent: 'center', alignItems: 'center'}}>
+          <View>
+            <View style={{justifyContent: 'center', alignItems: 'center', flexDirection: 'row'}}>
               {showText && <Text style={{fontFamily: textFont, color: state.colorNo, marginRight: spaceBetween / 2}}>
                 {textOff}
               </Text>}
-              <View style={{position: 'relative', paddingRight: spaceBetween / 2, paddingLeft: spaceBetween / 2}}>
+              <View style={{paddingRight: spaceBetween / 2, paddingLeft: spaceBetween / 2}}>
                 <View style={{
                   height: sliderHeight,
                   width: sliderWidth,
@@ -149,7 +148,7 @@ class Switches extends React.PureComponent<IProps, IState> {
 
   renderPillSwitch = () => {
     const buttonOffSetRight = this.props.buttonOffsetRight || defaultButtonOffsetPill
-    const buttonSize = this.props.buttonWidth || defaultButtonSizePill
+    const buttonSize = this.props.buttonSize || defaultButtonSizePill
     const leftPosition = this.props.buttonOffsetLeft || defaultButtonOffsetPill
     const offColor = this.props.colorSwitchOff || defaultColorSwitchOff
     const onColor = this.props.colorSwitchOn || defaultColorSwitchOn
@@ -157,7 +156,7 @@ class Switches extends React.PureComponent<IProps, IState> {
     const sliderWidth = this.props.sliderWidth || defaultSwitchWidthPill
     const rightPosition = sliderWidth - buttonSize - buttonOffSetRight
     const duration = this.props.animationDuration || defaultDuration
-    const disabled = this.props.disabled || defaultDisabledValue
+    const disabled = !!this.props.disabled ? this.props.disabled : defaultDisabledValue
     const easingFunction = this.props.easingFunction || defaultEasingFunction
     const textFont = this.props.textFont || defaultTextFont
     const textSize = this.props.textSize || defaultTextSize
@@ -167,7 +166,7 @@ class Switches extends React.PureComponent<IProps, IState> {
     const textOff = this.props.textOff || defaultTextOffPill
     const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill
     const buttonColor = this.props.buttonColor || defaultButtonColorPill
-    const showText = this.props.showText || defaultShowText
+    const showText = !!this.props.showText ? this.props.showText : defaultShowText
     return (<Animate
       show={true}
       start={{
@@ -183,14 +182,13 @@ class Switches extends React.PureComponent<IProps, IState> {
       }}>
       {(state: any) => (
         <View>
-          <View style={{width: '100%'}}>
+          <View>
             <TouchableOpacity activeOpacity={1} onPress={() => this.handleSwitch()} disabled={disabled}
                               style={{
                                 backgroundColor: state.color,
                                 height: sliderHeight,
                                 width: sliderWidth,
                                 borderRadius: sliderHeight / 2,
-                                position: 'relative',
                                 justifyContent: 'center',
                                 alignItems: 'center'
                               }}>
@@ -224,9 +222,9 @@ class Switches extends React.PureComponent<IProps, IState> {
 
   renderSwitches = () => {
     switch (this.props.shape) {
-      case Shapes.line:
+      case Shapes.line.toString():
         return this.renderLineSwitch()
-      case Shapes.pill:
+      case Shapes.pill.toString():
         return this.renderPillSwitch()
       default:
         return null
@@ -246,10 +244,8 @@ export default Switches
 
 let styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 })
-
-//   <Switch
-// value={true}
-// />

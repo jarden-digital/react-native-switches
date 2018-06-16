@@ -1,10 +1,36 @@
 /// <reference types="react" />
 import * as React from 'react';
-export declare type IProps = {};
+export declare type IProps = {
+    animationDuration?: number;
+    buttonColor?: string;
+    buttonSize?: number;
+    buttonOffsetLeft?: number;
+    buttonOffsetRight?: number;
+    colorSwitchOff?: string;
+    colorSwitchOn?: string;
+    colorTextOff?: string;
+    colorTextOn?: string;
+    disabled?: boolean;
+    easingFunction?: () => void;
+    onChange: () => void;
+    shape: string;
+    showText?: boolean;
+    sliderHeight?: number;
+    sliderWidth?: number;
+    spaceBetween?: number;
+    textFont?: string;
+    textOff?: string;
+    textOn?: string;
+    textSize?: number;
+    value: boolean;
+};
 export declare type IState = {};
-export declare enum SwitchTypes {
-}
 declare class Switches extends React.PureComponent<IProps, IState> {
+    constructor(props: IProps);
+    handleSwitch: () => void;
+    renderLineSwitch: () => JSX.Element;
+    renderPillSwitch: () => JSX.Element;
+    renderSwitches: () => JSX.Element | null;
     render(): JSX.Element;
 }
 export default Switches;

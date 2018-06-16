@@ -9,51 +9,157 @@ var Shapes;
     Shapes["pill"] = "pill";
     Shapes["line"] = "line";
 })(Shapes || (Shapes = {}));
+const defaultButtonOffsetLine = 0;
+const defaultButtonOffsetPill = 2;
+const defaultButtonSizeLine = 20;
+const defaultButtonSizePill = 32;
+const defaultButtonColorLine = '#96CBCE';
+const defaultButtonColorPill = '#FFF';
+const defaultColorSwitch = '#E8EAEC';
+const defaultColorSwitchOff = '#D3D5DA';
+const defaultColorSwitchOn = '#96CBCE';
+const defaultColorTextOffLine = '#7BCDD0';
+const defaultColorTextOnLine = '#E8EAEC';
+const defaultColorTextOffPill = '#445878';
+const defaultColorTextOnPill = '#FFF';
+const defaultDisabledValue = false;
+const defaultDuration = 300;
+const defaultEasingFunction = d3_ease_1.easeQuadIn;
+const defaultShowText = true;
+const defaultSpaceBetweenLine = 20;
+const defaultSpaceBetweenPill = 10;
+const defaultSwitchHeightLine = 6;
+const defaultSwitchHeightPill = 36;
+const defaultSwitchWidthLine = 25;
+const defaultSwitchWidthPill = 70;
+const defaultTextFont = 'courier';
+const defaultTextOffLine = 'No';
+const defaultTextOnLine = 'Yes';
+const defaultTextOffPill = 'off';
+const defaultTextOnPill = 'on';
+const defaultTextSize = 14;
 class Switches extends React.PureComponent {
     constructor(props) {
         super(props);
+        this.handleSwitch = () => {
+            this.props.onChange();
+        };
         this.renderLineSwitch = () => {
-            return null;
+            const buttonOffsetLeft = this.props.buttonOffsetLeft || defaultButtonOffsetLine;
+            const buttonOffsetRight = this.props.buttonOffsetRight || defaultButtonOffsetLine;
+            const easingFunction = this.props.easingFunction || defaultEasingFunction;
+            const buttonSize = this.props.buttonSize || defaultButtonSizeLine;
+            const duration = this.props.animationDuration || defaultDuration;
+            const colorTextOn = this.props.colorTextOn || defaultColorTextOnLine;
+            const disabled = !!this.props.disabled ? this.props.disabled : defaultDisabledValue;
+            const colorTextOff = this.props.colorTextOff || defaultColorTextOffLine;
+            const textFont = this.props.textFont || defaultTextFont;
+            const textOn = this.props.textOn || defaultTextOnLine;
+            const textOff = this.props.textOff || defaultTextOffLine;
+            const sliderHeight = this.props.sliderHeight || defaultSwitchHeightLine;
+            const sliderWidth = this.props.sliderWidth || defaultSwitchWidthLine;
+            const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenLine;
+            const buttonColor = this.props.buttonColor || defaultButtonColorLine;
+            const colorSwitchOn = this.props.colorSwitchOn || defaultColorSwitch;
+            const colorSwitchOff = this.props.colorSwitchOff || defaultColorSwitch;
+            const showText = !!this.props.showText ? this.props.showText : defaultShowText;
+            return (React.createElement(react_move_1.Animate, { show: true, start: {
+                    colorNo: this.props.value ? colorTextOff : colorTextOn,
+                    colorYes: this.props.value ? colorTextOn : colorTextOff,
+                    positionButton: this.props.value ? sliderWidth - buttonOffsetRight : 0 + buttonOffsetLeft,
+                    opacityChildren: this.props.value ? 1 : 0
+                }, update: {
+                    colorNo: [this.props.value ? colorTextOff : colorTextOn],
+                    colorYes: [this.props.value ? colorTextOn : colorTextOff],
+                    positionButton: [this.props.value ? sliderWidth - buttonOffsetRight : 0 + buttonOffsetLeft],
+                    opacityChildren: this.props.value ? [1] : [0],
+                    timing: { duration: duration, ease: easingFunction }
+                } }, (state) => (React.createElement(react_native_1.View, null,
+                React.createElement(react_native_1.View, { style: { justifyContent: 'center', alignItems: 'center', flexDirection: 'row' } },
+                    showText && React.createElement(react_native_1.Text, { style: { fontFamily: textFont, color: state.colorNo, marginRight: spaceBetween / 2 } }, textOff),
+                    React.createElement(react_native_1.View, { style: { paddingRight: spaceBetween / 2, paddingLeft: spaceBetween / 2 } },
+                        React.createElement(react_native_1.View, { style: {
+                                height: sliderHeight,
+                                width: sliderWidth,
+                                backgroundColor: this.props.value ? colorSwitchOn : colorSwitchOff,
+                                borderRadius: sliderHeight / 2
+                            } }),
+                        React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, disabled: disabled, style: {
+                                left: state.positionButton,
+                                position: 'absolute',
+                                top: (sliderHeight - buttonSize) / 2,
+                                width: buttonSize,
+                                height: buttonSize,
+                                borderRadius: buttonSize / 2,
+                                backgroundColor: buttonColor
+                            }, onPress: () => this.handleSwitch() })),
+                    showText && React.createElement(react_native_1.Text, { style: { fontFamily: textFont, color: state.colorYes, marginLeft: spaceBetween / 2 } }, textOn)),
+                React.createElement(react_native_1.View, { style: { opacity: state.opacityChildren } })))));
         };
         this.renderPillSwitch = () => {
-            // Easing function in props or default
-            // Starting value in props
-            // Colors on and off
-            const onColor = this.props.colorSwitchOn || '#96CBCE';
-            const offColor = this.props.colorSwitchOff || '#D3D5DA';
+            const buttonOffSetRight = this.props.buttonOffsetRight || defaultButtonOffsetPill;
+            const buttonSize = this.props.buttonSize || defaultButtonSizePill;
+            const leftPosition = this.props.buttonOffsetLeft || defaultButtonOffsetPill;
+            const offColor = this.props.colorSwitchOff || defaultColorSwitchOff;
+            const onColor = this.props.colorSwitchOn || defaultColorSwitchOn;
+            const sliderHeight = this.props.sliderHeight || defaultSwitchHeightPill;
+            const sliderWidth = this.props.sliderWidth || defaultSwitchWidthPill;
+            const rightPosition = sliderWidth - buttonSize - buttonOffSetRight;
+            const duration = this.props.animationDuration || defaultDuration;
+            const disabled = !!this.props.disabled ? this.props.disabled : defaultDisabledValue;
+            const easingFunction = this.props.easingFunction || defaultEasingFunction;
+            const textFont = this.props.textFont || defaultTextFont;
+            const textSize = this.props.textSize || defaultTextSize;
+            const colorTextOn = this.props.colorTextOn || defaultColorTextOnPill;
+            const colorTextOff = this.props.colorTextOff || defaultColorTextOffPill;
+            const textOn = this.props.textOn || defaultTextOnPill;
+            const textOff = this.props.textOff || defaultTextOffPill;
+            const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill;
+            const buttonColor = this.props.buttonColor || defaultButtonColorPill;
+            const showText = !!this.props.showText ? this.props.showText : defaultShowText;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
-                    color: this.state.switchOn ? onColor : offColor,
-                    positionButton: !this.state.switchOn ? 2 : 36,
-                    opacitySubLabel: !this.state.switchOn ? 0 : 1,
-                    opacityPep: this.state.switchOn ? 1 : 0
+                    color: this.props.value ? onColor : offColor,
+                    positionButton: this.props.value ? rightPosition : leftPosition,
+                    opacityChildren: this.props.value ? 1 : 0
                 }, update: {
-                    color: [this.state.switchOn ? '#96CBCE' : '#D3D5DA'],
-                    positionButton: [!this.state.switchOn ? 2 : 36],
-                    opacitySubLabel: [!this.state.switchOn ? 0 : 1],
-                    opacityPep: this.state.switchOn ? [1] : [0],
-                    timing: { duration: 300, ease: d3_ease_1.easeQuadIn }
-                } }, (state) => (React.createElement(react_native_1.View, { style: { width: '100%' } },
-                React.createElement(react_native_1.View, { style: [pagesStyles.section, { alignItems: 'flex-end', width: '100%' }] },
-                    React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), style: [{ backgroundColor: state.color }, pagesStyles.alternativeSwitch] },
-                        React.createElement(react_native_1.View, { style: { flexDirection: 'row' } },
-                            React.createElement(react_native_1.Text, { style: pagesStyles.textAlternativeSwitchOn }, "on"),
-                            React.createElement(react_native_1.Text, { style: pagesStyles.textAlternativeSwitchOff }, "off")),
-                        React.createElement(react_native_1.View, { style: [{ left: state.positionButton }, pagesStyles.buttonAlternativeSwitch] }))),
-                React.createElement(react_native_1.View, { style: [pagesStyles.section, { opacity: state.opacityPep }] })))));
+                    color: [this.props.value ? onColor : offColor],
+                    positionButton: [this.props.value ? rightPosition : leftPosition],
+                    opacityChildren: [this.props.value ? 1 : 0],
+                    timing: { duration: duration, ease: easingFunction }
+                } }, (state) => (React.createElement(react_native_1.View, null,
+                React.createElement(react_native_1.View, null,
+                    React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, style: {
+                            backgroundColor: state.color,
+                            height: sliderHeight,
+                            width: sliderWidth,
+                            borderRadius: sliderHeight / 2,
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        } },
+                        showText && React.createElement(react_native_1.View, { style: { flexDirection: 'row' } },
+                            React.createElement(react_native_1.Text, { style: { fontFamily: textFont, fontSize: textSize, color: colorTextOn, marginRight: spaceBetween / 2 } }, textOn),
+                            React.createElement(react_native_1.Text, { style: { fontFamily: textFont, fontSize: textSize, color: colorTextOff, marginLeft: spaceBetween / 2 } }, textOff)),
+                        React.createElement(react_native_1.View, { style: {
+                                left: state.positionButton,
+                                position: 'absolute',
+                                backgroundColor: buttonColor,
+                                width: buttonSize,
+                                height: buttonSize,
+                                borderRadius: buttonSize / 2
+                            } }))),
+                React.createElement(react_native_1.View, { style: { opacity: state.opacityChildren } }, this.props.children)))));
         };
         this.renderSwitches = () => {
             switch (this.props.shape) {
-                case Shapes.line:
+                case Shapes.line.toString():
                     return this.renderLineSwitch();
-                case Shapes.pill:
+                case Shapes.pill.toString():
                     return this.renderPillSwitch();
                 default:
                     return null;
             }
         };
-        this.state = {
-            switchOn: this.props.defaultValue || true
-        };
+        this.handleSwitch = this.handleSwitch.bind(this);
     }
     render() {
         return (React.createElement(react_native_1.View, { style: styles.container }, this.renderSwitches()));
@@ -62,140 +168,8 @@ class Switches extends React.PureComponent {
 exports.default = Switches;
 let styles = react_native_1.StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
-// FAT ONE
-//   <Animate
-// show={true}
-// start={{
-//   color: this.state.switchOn ? '#96CBCE' : '#D3D5DA',
-//     positionButton: !this.state.switchOn ? 2 : 36,
-//     opacitySubLabel: !this.state.switchOn ? 0 : 1,
-//     opacityPep: this.state.switchOn ? 1 : 0
-// }}
-// update={{
-//   color: [this.state.switchOn ? '#96CBCE' : '#D3D5DA'],
-//     positionButton: [!this.state.switchOn ? 2 : 36],
-//     opacitySubLabel: [!this.state.switchOn ? 0 : 1],
-//     opacityPep: this.state.switchOn ? [1] : [0],
-//     timing: {duration: 300, ease: easeQuadIn}
-// }}>
-// {(state: any) => (
-//   <View style={{width: '100%'}}>
-//     <View style={[pagesStyles.section, {alignItems: 'flex-end', width: '100%'}]}>
-//       <TouchableOpacity activeOpacity={1} onPress={() => this.handleSwitch()}
-//                         style={[{backgroundColor: state.color}, pagesStyles.alternativeSwitch]}>
-//         <View style={{flexDirection: 'row'}}>
-//           <Text style={pagesStyles.textAlternativeSwitchOn}>on</Text>
-//           <Text style={pagesStyles.textAlternativeSwitchOff}>off</Text>
-//         </View>
-//         <View style={[{left: state.positionButton}, pagesStyles.buttonAlternativeSwitch]}/>
-//       </TouchableOpacity>
-//     </View>
-//     <View style={[pagesStyles.section, {opacity: state.opacityPep}]}>
-//     </View>
-//   </View>
-// )}
-// </Animate>
-// buttonAlternativeSwitch: {
-//   position: 'absolute',
-//     backgroundColor: colors.white,
-//     width: 32,
-//     height: 32,
-//     borderRadius: 16
-// },
-// textAlternativeSwitchOn: {
-//   fontFamily: grid.font,
-//     fontSize: grid.unit,
-//     color: colors.white,
-//     marginRight: 4
-// },
-// textAlternativeSwitchOff: {
-//   fontFamily: grid.font,
-//     fontSize: grid.unit,
-//     color: colors.base,
-//     opacity: grid.lowOpacity,
-//     marginLeft: 4
-// },
-// alternativeSwitch: {
-//   height: 36,
-//     width: 70,
-//     borderRadius: 18,
-//     position: 'relative',
-//     justifyContent: 'center',
-//     alignItems: 'center'
-// },
-// viewAlternativeSwitch: {
-//   justifyContent: 'space-between',
-//     alignItems: 'center',
-//     marginBottom: grid.unit,
-//     flexDirection: 'row',
-//     width: '100%'
-// }
-// SKINNY ONE
-//   <Animate
-// show={true}
-// start={{
-//   colorNo: !this.state.switchOn ? '#7BCDD0' : '#E8EAEC',
-//     colorYes: this.state.switchOn ? '#7BCDD0' : '#E8EAEC',
-//     positionButton: this.state.switchOn ? 25 : 0,
-//     opacityPep: this.state.switchOn ? 1 : 0
-// }}
-// update={{
-//   colorNo: [!this.state.switchOn ? '#7BCDD0' : '#E8EAEC'],
-//     colorYes: [this.state.switchOn ? '#7BCDD0' : '#E8EAEC'],
-//     positionButton: [this.state.switchOn ? 25 : 0],
-//     opacityPep: [this.state.switchOn ? 1 : 0],
-//     timing: {duration: 300, ease: easeQuadIn}
-// }}>
-// {(state: any) => (
-//   <View style={{width: '100%'}}>
-//     <View style={[pagesStyles.section, {alignItems: 'flex-end', width: '100%'}]}>
-//       <View style={[pagesStyles.row, {justifyContent: 'center', alignItems: 'center'}]}>
-//         <Text style={{fontFamily: grid.fontBold, color: state.colorNo, marginRight: 10}}>No</Text>
-//         <View style={{position: 'relative', paddingRight: 10, paddingLeft: 10}}>
-//           <View style={{height: 6, width: 25, backgroundColor: '#E8EAEC', borderRadius: 3}}/>
-//           <TouchableOpacity activeOpacity={1} style={[pagesStyles.buttonSwitch, {left: state.positionButton}]}
-//                             onPress={() => this.setState({switchOn: !this.state.switchOn})}/>
-//         </View>
-//         <Text style={{fontFamily: grid.fontBold, color: state.colorYes, marginLeft: 10}}>Yes</Text>
-//       </View>
-//     </View>
-//     <View style={[pagesStyles.section, {opacity: state.opacityPep}]}>
-//     </View>
-//   </View>
-// )}
-// </Animate>
-// buttonSwitch: {
-//   position: 'absolute',
-//     top: -7,
-//     width: 20,
-//     height: 20,
-//     borderRadius: 20,
-//     backgroundColor: 'rgb(150, 203, 206)'
-// },
-//   <Switch
-// value={true}
-// onValueChange={(val) => console.log(val)}
-// disabled={false}
-// activeText={'On'}
-// inActiveText={'Off'}
-// circleSize={30}
-// barHeight={1}
-// circleBorderWidth={3}
-// backgroundActive={'green'}
-// backgroundInactive={'gray'}
-// circleActiveColor={'#30a566'}
-// circleInActiveColor={'#000000'}
-// changeValueImmediately={true}
-// renderInsideCircle={() => <CustomComponent />} // custom component to render inside the Switch circle (Text, Image, etc.)
-// changeValueImmediately={true} // if rendering inside circle, change state immediately or wait for animation to complete
-// innerCircleStyle={{ alignItems: "center", justifyContent: "center" }} // style for inner animated circle for what you (may) be rendering inside the circle
-// outerCircleStyle={{}} // style for outer animated circle
-// renderActiveText={false}
-// renderInActiveText={false}
-// switchLeftPx={2} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
-// switchRightPx={2} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
-// switchWidthMultiplier={2} // multipled by the `circleSize` prop to calculate total width of the Switch
-// /> 

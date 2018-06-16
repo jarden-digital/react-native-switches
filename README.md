@@ -34,10 +34,9 @@ import Switches from 'react-native-switches'
 |---|---|---|---|---|
 |**`animationDuration`**|Duration of the transition animation|`300`|`false`|`number`|
 |**`buttonColor`**|Color of the button of the switch|Line shape: `#96CBCE` / Pill shape: `#FFF`|`false`|`string`|
-|**`buttonHeight`**|Height of the button of the switch|Line shape: `20` / Pill shape: `32`|`false`|`number`|
 |**`buttonOffsetLeft`**|Difference between the maximum left position of the button and the maximum left position of the slide|Line shape: `0` / Pill shape: `2`|`false`|`number`|
 |**`buttonOffsetRight`**|Difference between the maximum right position of the button and the maximum right position of the slide|Line shape: `0` / Pill shape: `2`|`false`|`number`|
-|**`buttonWidth`**|Width of the button of the switch|Line shape: `20` / Pill shape: `32`|`false`|`number`|
+|**`buttonSize`**|Height and width of the button of the switch|Line shape: `20` / Pill shape: `32`|`false`|`number`|
 |**`colorSwitchOff`**|Color of the slide when the switch is on off position|Line shape: `#E8EAEC` / Pill shape: `#D3D5DA`|`false`|`string`|
 |**`colorSwitchOn`**|Color of the slide when the switch is on on position|Line shape: `#E8EAEC` / Pill shape: `#96CBCE`|`false`|`string`|
 |**`colorTextOff`**|Color of the text when the switch is on off position|Line shape: `#7BCDD0` / Pill shape: `#E8EAEC`|`false`|`string`|
