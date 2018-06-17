@@ -1,15 +1,3 @@
-
-
-
-
-
-NOT DEPLOYED YET
-
-
-
-
-
-
 # react-native-switches
 _Customizable Switch components for react native_
 
@@ -28,7 +16,7 @@ yarn add react-native-switches
 
 ## Demo
 
-![pill-switch](https://user-images.githubusercontent.com/10620919/41506407-43fcaac4-7271-11e8-9df9-0cd8e01a43a0.gif)
+![pill-switch](https://user-images.githubusercontent.com/10620919/41511911-4288a9c8-72d4-11e8-9312-8b8ecb58b647.gif)   ![line-switch](https://user-images.githubusercontent.com/10620919/41511924-7dda6c0a-72d4-11e8-8db3-2f1e7c918aff.gif)
 
 ## Usage
 

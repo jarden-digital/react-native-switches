@@ -18,8 +18,8 @@ const defaultButtonColorPill = '#FFF';
 const defaultColorSwitch = '#E8EAEC';
 const defaultColorSwitchOff = '#D3D5DA';
 const defaultColorSwitchOn = '#96CBCE';
-const defaultColorTextOffLine = '#7BCDD0';
-const defaultColorTextOnLine = '#E8EAEC';
+const defaultColorTextOffLine = '#E8EAEC';
+const defaultColorTextOnLine = '#7BCDD0';
 const defaultColorTextOffPill = '#445878';
 const defaultColorTextOnPill = '#FFF';
 const defaultDisabledValue = false;
@@ -74,8 +74,8 @@ class Switches extends React.PureComponent {
                     positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : 0 + buttonOffsetLeft],
                     opacityChildren: this.props.value ? [1] : [0],
                     timing: { duration: duration, ease: easingFunction }
-                } }, (state) => (React.createElement(react_native_1.View, { style: { width: '100%' } },
-                React.createElement(react_native_1.View, { style: { justifyContent: 'center', alignItems: 'center', flexDirection: 'row' } },
+                } }, (state) => (React.createElement(react_native_1.View, null,
+                React.createElement(react_native_1.View, { style: { alignItems: 'center', flexDirection: 'row' } },
                     showText && React.createElement(react_native_1.Text, { style: { fontFamily: textFont, color: state.colorNo, marginRight: spaceBetween / 2 } }, textOff),
                     React.createElement(react_native_1.View, { style: { paddingRight: spaceBetween / 2, paddingLeft: spaceBetween / 2 } },
                         React.createElement(react_native_1.View, { style: {
@@ -127,7 +127,7 @@ class Switches extends React.PureComponent {
                     opacityChildren: [this.props.value ? 1 : 0],
                     timing: { duration: duration, ease: easingFunction }
                 } }, (state) => (React.createElement(react_native_1.View, null,
-                React.createElement(react_native_1.View, { style: { width: '100%' } },
+                React.createElement(react_native_1.View, null,
                     React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, style: {
                             backgroundColor: state.color,
                             height: sliderHeight,
@@ -162,14 +162,7 @@ class Switches extends React.PureComponent {
         this.handleSwitch = this.handleSwitch.bind(this);
     }
     render() {
-        return (React.createElement(react_native_1.View, { style: styles.container }, this.renderSwitches()));
+        return (React.createElement(react_native_1.View, null, this.renderSwitches()));
     }
 }
 exports.default = Switches;
-let styles = react_native_1.StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    }
-});
