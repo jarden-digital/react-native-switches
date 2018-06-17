@@ -1,3 +1,15 @@
+
+
+
+
+
+NOT DEPLOYED YET
+
+
+
+
+
+
 # react-native-switches
 _Customizable Switch components for react native_
 
