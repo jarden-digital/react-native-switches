@@ -16,6 +16,8 @@ yarn add react-native-switches
 
 ## Demo
 
+![pill-switch](https://user-images.githubusercontent.com/10620919/41506407-43fcaac4-7271-11e8-9df9-0cd8e01a43a0.gif)
+
 ## Usage
 
 Basic usage requires choosing between the _**line**_ and _**pill**_ shapes.
@@ -39,26 +41,22 @@ import Switches from 'react-native-switches'
 |**`buttonSize`**|Height and width of the button of the switch|Line shape: `20` / Pill shape: `32`|`false`|`number`|
 |**`colorSwitchOff`**|Color of the slide when the switch is on off position|Line shape: `#E8EAEC` / Pill shape: `#D3D5DA`|`false`|`string`|
 |**`colorSwitchOn`**|Color of the slide when the switch is on on position|Line shape: `#E8EAEC` / Pill shape: `#96CBCE`|`false`|`string`|
-|**`colorTextOff`**|Color of the text when the switch is on off position|Line shape: `#7BCDD0` / Pill shape: `#E8EAEC`|`false`|`string`|
-|**`colorTextOn`**|Color of the text when the switch is on on position|Line shape: `#445878` / Pill shape: `#FFF`|`false`|`string`|
+|**`colorTextOff`**|Color of the text when the switch is on off position|Line shape: `#E8EAEC` / Pill shape: `#445878`|`false`|`string`|
+|**`colorTextOn`**|Color of the text when the switch is on on position|Line shape: `#7BCDD0` / Pill shape: `#FFF`|`false`|`string`|
 |**`disabled`**|Boolean disabling the click on the button|`false`|`false`|`boolean`|
 |**`easingFunction`**|Easing function for the animation|`easeQuadIn` [d3-ease function](https://github.com/d3/d3-ease#easeQuadIn)|`false`|`function`|
 |**`onChange`**|Function triggered when the switch is tapped|*None*|`true`|`function`|
 |**`shape`**|Shape of the switch (`line` or `pill`)|*None*|`true`|`Shapes` enum|
 |**`showText`**|Boolean indicating if the text should be visible or not|`true`|`false`|`boolean`|
-|**`sliderHeight`**|Height of the slider of the switch|Line shape: `8` / Pill shape: `36`|`false`|`number`|
-|**`sliderWidth`**|Width of the slider of the switch|Line shape: `25` / Pill shape: `70`|`false`|`number`|
-|**`spaceBetween`**|Space between the two texts of the switch|Line shape: `20` / Pill shape: `8`|`false`|`number`|
+|**`sliderHeight`**|Height of the slider of the switch|Line shape: `6` / Pill shape: `36`|`false`|`number`|
+|**`sliderWidth`**|Width of the slider of the switch|Line shape: `30` / Pill shape: `70`|`false`|`number`|
+|**`spaceBetween`**|Space between the two texts of the switch|Line shape: `10` / Pill shape: `10`|`false`|`number`|
 |**`textFont`**|Font used for the text of the switch|`courier`|`false`|`string`|
 |**`textOff`**|Text used for the `off` position of the switch|Line shape: `No` / Pill shape: `off`|`false`|`string`|
 |**`textOn`**|Text used for the `on` position of the switch|Line shape: `Yes` / Pill shape: `on`|`false`|`string`|
-|**`textSize`**|Size of the text|`16`|`false`|`number`|
+|**`textSize`**|Size of the text|`14`|`false`|`number`|
 |**`value`**|Boolean value of the switch matching its position (`true` is `on`)|*None*|`true`|`boolean`|
 
 ## Contributing
 
 Pull requests are welcome.
-
-
-
-// todo FIX THE DEFAULT VALUES AND INTEGRATE VIDEOS
