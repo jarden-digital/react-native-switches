@@ -26,6 +26,10 @@ export type IProps = {
   textOn?: string
   textSize?: number
   value: boolean
+  borderWidthOff?: number
+  borderWidthOn?: number
+  borderColorOff?: string
+  borderColorOn?: string
 }
 
 enum Shapes {
@@ -64,6 +68,8 @@ const defaultTextOnLine = 'Yes'
 const defaultTextOffPill = 'off'
 const defaultTextOnPill = 'on'
 const defaultTextSize = 14
+const defaultBorderWidth = 1
+const defaultBorderColor = '#D3D5DA'
 
 class Switches extends React.PureComponent<IProps, IState> {
 
@@ -95,6 +101,9 @@ class Switches extends React.PureComponent<IProps, IState> {
     const colorSwitchOn = this.props.colorSwitchOn || defaultColorSwitch
     const colorSwitchOff = this.props.colorSwitchOff || defaultColorSwitch
     const showText = this.props.showText === false ? this.props.showText : defaultShowText
+    const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth
+    const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor
+    
     return (
       <Animate
         show={true}
@@ -131,7 +140,9 @@ class Switches extends React.PureComponent<IProps, IState> {
                   width: buttonSize,
                   height: buttonSize,
                   borderRadius: buttonSize / 2,
-                  backgroundColor: buttonColor
+                  backgroundColor: buttonColor,
+                  borderWidth: borderWidth,
+                  borderColor: borderColor
                 }} onPress={() => this.handleSwitch()}/>
               </View>
               {showText && <Text style={{fontFamily: textFont, color: state.colorYes, marginLeft: spaceBetween / 2}}>
@@ -168,6 +179,9 @@ class Switches extends React.PureComponent<IProps, IState> {
     const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill
     const buttonColor = this.props.buttonColor || defaultButtonColorPill
     const showText = this.props.showText === false ? this.props.showText : defaultShowText
+    const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth
+    const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor
+    const icon = this.props.icon ? this.props.icon : null
     return (<Animate
       show={true}
       start={{
@@ -191,7 +205,9 @@ class Switches extends React.PureComponent<IProps, IState> {
                                 width: sliderWidth,
                                 borderRadius: sliderHeight / 2,
                                 justifyContent: 'center',
-                                alignItems: 'center'
+                                alignItems: 'center',
+                                borderWidth: borderWidth,
+                                borderColor: borderColor
                               }}>
               {showText && <View style={{flexDirection: 'row'}}>
                 <Text
@@ -209,8 +225,12 @@ class Switches extends React.PureComponent<IProps, IState> {
                 backgroundColor: buttonColor,
                 width: buttonSize,
                 height: buttonSize,
-                borderRadius: buttonSize / 2
-              }}/>
+                borderRadius: buttonSize / 2,
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                {icon}
+              </View>
             </TouchableOpacity>
           </View>
           <View style={{opacity: state.opacityChildren}}>

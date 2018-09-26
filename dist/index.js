@@ -38,6 +38,8 @@ const defaultTextOnLine = 'Yes';
 const defaultTextOffPill = 'off';
 const defaultTextOnPill = 'on';
 const defaultTextSize = 14;
+const defaultBorderWidth = 1;
+const defaultBorderColor = '#D3D5DA';
 class Switches extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -63,6 +65,8 @@ class Switches extends React.PureComponent {
             const colorSwitchOn = this.props.colorSwitchOn || defaultColorSwitch;
             const colorSwitchOff = this.props.colorSwitchOff || defaultColorSwitch;
             const showText = this.props.showText === false ? this.props.showText : defaultShowText;
+            const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth;
+            const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     colorNo: this.props.value ? colorTextOff : colorTextOn,
                     colorYes: this.props.value ? colorTextOn : colorTextOff,
@@ -91,7 +95,9 @@ class Switches extends React.PureComponent {
                                 width: buttonSize,
                                 height: buttonSize,
                                 borderRadius: buttonSize / 2,
-                                backgroundColor: buttonColor
+                                backgroundColor: buttonColor,
+                                borderWidth: borderWidth,
+                                borderColor: borderColor
                             }, onPress: () => this.handleSwitch() })),
                     showText && React.createElement(react_native_1.Text, { style: { fontFamily: textFont, color: state.colorYes, marginLeft: spaceBetween / 2 } }, textOn)),
                 React.createElement(react_native_1.View, { style: { opacity: state.opacityChildren } }, this.props.children)))));
@@ -117,6 +123,9 @@ class Switches extends React.PureComponent {
             const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill;
             const buttonColor = this.props.buttonColor || defaultButtonColorPill;
             const showText = this.props.showText === false ? this.props.showText : defaultShowText;
+            const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth;
+            const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor;
+            const icon = this.props.icon ? this.props.icon : null;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     color: this.props.value ? onColor : offColor,
                     positionButton: this.props.value ? rightPosition : leftPosition,
@@ -134,7 +143,9 @@ class Switches extends React.PureComponent {
                             width: sliderWidth,
                             borderRadius: sliderHeight / 2,
                             justifyContent: 'center',
-                            alignItems: 'center'
+                            alignItems: 'center',
+                            borderWidth: borderWidth,
+                            borderColor: borderColor
                         } },
                         showText && React.createElement(react_native_1.View, { style: { flexDirection: 'row' } },
                             React.createElement(react_native_1.Text, { style: { fontFamily: textFont, fontSize: textSize, color: colorTextOn, marginRight: spaceBetween / 2 } }, textOn),
@@ -145,8 +156,10 @@ class Switches extends React.PureComponent {
                                 backgroundColor: buttonColor,
                                 width: buttonSize,
                                 height: buttonSize,
-                                borderRadius: buttonSize / 2
-                            } }))),
+                                borderRadius: buttonSize / 2,
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            } }, icon))),
                 React.createElement(react_native_1.View, { style: { opacity: state.opacityChildren } }, this.props.children)))));
         };
         this.renderSwitches = () => {
