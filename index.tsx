@@ -140,7 +140,9 @@ class Switches extends React.PureComponent<IProps, IState> {
                   width: buttonSize,
                   height: buttonSize,
                   borderRadius: buttonSize / 2,
-                  backgroundColor: buttonColor
+                  backgroundColor: buttonColor,
+                  borderWidth: borderWidth,
+                  borderColor: borderColor
                 }} onPress={() => this.handleSwitch()}/>
               </View>
               {showText && <Text style={{fontFamily: textFont, color: state.colorYes, marginLeft: spaceBetween / 2}}>
@@ -179,6 +181,7 @@ class Switches extends React.PureComponent<IProps, IState> {
     const showText = this.props.showText === false ? this.props.showText : defaultShowText
     const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth
     const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor
+    const icon = this.props.icon ? this.props.icon : null
     return (<Animate
       show={true}
       start={{
@@ -222,8 +225,12 @@ class Switches extends React.PureComponent<IProps, IState> {
                 backgroundColor: buttonColor,
                 width: buttonSize,
                 height: buttonSize,
-                borderRadius: buttonSize / 2
-              }}/>
+                borderRadius: buttonSize / 2,
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}>
+                {icon}
+              </View>
             </TouchableOpacity>
           </View>
           <View style={{opacity: state.opacityChildren}}>
