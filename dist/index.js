@@ -9,6 +9,8 @@ var Shapes;
     Shapes["pill"] = "pill";
     Shapes["line"] = "line";
 })(Shapes || (Shapes = {}));
+const defaultBorderColor = '#D3D5DA';
+const defaultBorderWidth = 1;
 const defaultButtonOffsetLine = 0;
 const defaultButtonOffsetPill = 2;
 const defaultButtonSizeLine = 20;
@@ -38,8 +40,6 @@ const defaultTextOnLine = 'Yes';
 const defaultTextOffPill = 'off';
 const defaultTextOnPill = 'on';
 const defaultTextSize = 14;
-const defaultBorderWidth = 1;
-const defaultBorderColor = '#D3D5DA';
 class Switches extends React.PureComponent {
     constructor(props) {
         super(props);
@@ -70,12 +70,12 @@ class Switches extends React.PureComponent {
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     colorNo: this.props.value ? colorTextOff : colorTextOn,
                     colorYes: this.props.value ? colorTextOn : colorTextOff,
-                    positionButton: this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : 0 + buttonOffsetLeft,
+                    positionButton: this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : buttonOffsetLeft,
                     opacityChildren: this.props.value ? 1 : 0
                 }, update: {
                     colorNo: [this.props.value ? colorTextOff : colorTextOn],
                     colorYes: [this.props.value ? colorTextOn : colorTextOff],
-                    positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : 0 + buttonOffsetLeft],
+                    positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : buttonOffsetLeft],
                     opacityChildren: this.props.value ? [1] : [0],
                     timing: { duration: duration, ease: easingFunction }
                 } }, (state) => (React.createElement(react_native_1.View, null,

@@ -5,6 +5,8 @@ import {easeQuadIn} from 'd3-ease'
 
 export type IProps = {
   animationDuration?: number
+  borderColor?: string
+  borderWidth?: number
   buttonColor?: string
   buttonSize?: number
   buttonOffsetLeft?: number
@@ -15,6 +17,7 @@ export type IProps = {
   colorTextOn?: string
   disabled?: boolean
   easingFunction?: () => void
+  icon?: any
   onChange: () => void
   shape: string
   showText?: boolean
@@ -26,10 +29,6 @@ export type IProps = {
   textOn?: string
   textSize?: number
   value: boolean
-  borderWidthOff?: number
-  borderWidthOn?: number
-  borderColorOff?: string
-  borderColorOn?: string
 }
 
 enum Shapes {
@@ -39,6 +38,8 @@ enum Shapes {
 
 export type IState = {}
 
+const defaultBorderColor = '#D3D5DA'
+const defaultBorderWidth = 1
 const defaultButtonOffsetLine = 0
 const defaultButtonOffsetPill = 2
 const defaultButtonSizeLine = 20
@@ -68,8 +69,6 @@ const defaultTextOnLine = 'Yes'
 const defaultTextOffPill = 'off'
 const defaultTextOnPill = 'on'
 const defaultTextSize = 14
-const defaultBorderWidth = 1
-const defaultBorderColor = '#D3D5DA'
 
 class Switches extends React.PureComponent<IProps, IState> {
 
@@ -110,13 +109,13 @@ class Switches extends React.PureComponent<IProps, IState> {
         start={{
           colorNo: this.props.value ? colorTextOff : colorTextOn,
           colorYes: this.props.value ? colorTextOn : colorTextOff,
-          positionButton: this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : 0 + buttonOffsetLeft,
+          positionButton: this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : buttonOffsetLeft,
           opacityChildren: this.props.value ? 1 : 0
         }}
         update={{
           colorNo: [this.props.value ? colorTextOff : colorTextOn],
           colorYes: [this.props.value ? colorTextOn : colorTextOff],
-          positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : 0 + buttonOffsetLeft],
+          positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : buttonOffsetLeft],
           opacityChildren: this.props.value ? [1] : [0],
           timing: {duration: duration, ease: easingFunction}
         }}>

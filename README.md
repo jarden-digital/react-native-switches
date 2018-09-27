@@ -1,4 +1,7 @@
 # react-native-switches
+
+[![npm](https://img.shields.io/npm/v/@haskkor/react-native-switches.svg)](https://www.npmjs.com/package/@haskkor/react-native-switches)
+
 _Customizable Switch components for react native_
 
 Using:
@@ -35,6 +38,8 @@ import Switches from 'react-native-switches'
 | Key | Description | Default | Required | Type |
 |---|---|---|---|---|
 |**`animationDuration`**|Duration of the transition animation|`300`|`false`|`number`|
+|**`borderColor`**|Color of the border of the switch|`#D3D5DA`|`false`|`string`|
+|**`borderWidth`**|Width of the border of the switch|`1`|`false`|`number`|
 |**`buttonColor`**|Color of the button of the switch|Line shape: `#96CBCE` / Pill shape: `#FFF`|`false`|`string`|
 |**`buttonOffsetLeft`**|Difference between the maximum left position of the button and the maximum left position of the slide|Line shape: `0` / Pill shape: `2`|`false`|`number`|
 |**`buttonOffsetRight`**|Difference between the maximum right position of the button and the maximum right position of the slide|Line shape: `0` / Pill shape: `2`|`false`|`number`|
@@ -45,6 +50,7 @@ import Switches from 'react-native-switches'
 |**`colorTextOn`**|Color of the text when the switch is on on position|Line shape: `#7BCDD0` / Pill shape: `#FFF`|`false`|`string`|
 |**`disabled`**|Boolean disabling the click on the button|`false`|`false`|`boolean`|
 |**`easingFunction`**|Easing function for the animation|`easeQuadIn` [d3-ease function](https://github.com/d3/d3-ease#easeQuadIn)|`false`|`function`|
+|**`icon`**|Icon to be placed on the button|*None*|`false`|`any`|
 |**`onChange`**|Function triggered when the switch is tapped|*None*|`true`|`function`|
 |**`shape`**|Shape of the switch (`line` or `pill`)|*None*|`true`|`Shapes` enum|
 |**`showText`**|Boolean indicating if the text should be visible or not|`true`|`false`|`boolean`|

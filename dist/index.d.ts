@@ -1,6 +1,9 @@
+/// <reference types="react" />
 import * as React from 'react';
 export declare type IProps = {
     animationDuration?: number;
+    borderColor?: string;
+    borderWidth?: number;
     buttonColor?: string;
     buttonSize?: number;
     buttonOffsetLeft?: number;
@@ -11,6 +14,7 @@ export declare type IProps = {
     colorTextOn?: string;
     disabled?: boolean;
     easingFunction?: () => void;
+    icon?: any;
     onChange: () => void;
     shape: string;
     showText?: boolean;
@@ -22,18 +26,14 @@ export declare type IProps = {
     textOn?: string;
     textSize?: number;
     value: boolean;
-    borderWidthOff?: number;
-    borderWidthOn?: number;
-    borderColorOff?: string;
-    borderColorOn?: string;
 };
 export declare type IState = {};
 declare class Switches extends React.PureComponent<IProps, IState> {
     constructor(props: IProps);
     handleSwitch: () => void;
-    renderLineSwitch: () => any;
-    renderPillSwitch: () => any;
-    renderSwitches: () => any;
-    render(): any;
+    renderLineSwitch: () => JSX.Element;
+    renderPillSwitch: () => JSX.Element;
+    renderSwitches: () => JSX.Element | null;
+    render(): JSX.Element;
 }
 export default Switches;
