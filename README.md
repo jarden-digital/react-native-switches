@@ -1,6 +1,6 @@
 # react-native-switches
 
-[![npm](https://img.shields.io/npm/v/@haskkor/react-native-switches.svg)](https://www.npmjs.com/package/@haskkor/react-native-switches)
+[![npm](https://img.shields.io/npm/v/react-native-switches.svg)](https://www.npmjs.com/package/react-native-switches)
 
 _Customizable Switch components for react native_
 
