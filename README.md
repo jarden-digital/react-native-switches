@@ -62,6 +62,9 @@ import Switches from 'react-native-switches'
 |**`textOn`**|Text used for the `on` position of the switch|Line shape: `Yes` / Pill shape: `on`|`false`|`string`|
 |**`textSize`**|Size of the text|`14`|`false`|`number`|
 |**`value`**|Boolean value of the switch matching its position (`true` is `on`)|*None*|`true`|`boolean`|
+|**`borderWidth`**|Border's width|`1`|`false`|`number`|
+|**`borderColor`**|Color of the switch border|`#D3D5DA`|`false`|`string`|
+|**`icon`**|Icon to be displayed in button|null|`false`|`element`|
 
 ## Contributing
 
