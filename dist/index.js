@@ -68,7 +68,6 @@ class Switches extends React.PureComponent {
             const showText = this.props.showText === false ? this.props.showText : defaultShowText;
             const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth;
             const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor;
-            const testID = this.props.testID || defaultTestID;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     colorNo: this.props.value ? colorTextOff : colorTextOn,
                     colorYes: this.props.value ? colorTextOn : colorTextOff,
@@ -90,7 +89,7 @@ class Switches extends React.PureComponent {
                                 backgroundColor: this.props.value ? colorSwitchOn : colorSwitchOff,
                                 borderRadius: sliderHeight / 2
                             } }),
-                        React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, disabled: disabled, testID: testID, style: {
+                        React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, disabled: disabled, style: {
                                 left: state.positionButton,
                                 position: 'absolute',
                                 top: (sliderHeight - buttonSize) / 2,
@@ -128,7 +127,6 @@ class Switches extends React.PureComponent {
             const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth;
             const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor;
             const icon = this.props.icon ? this.props.icon : null;
-            const testID = this.props.testID || defaultTestID;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     color: this.props.value ? onColor : offColor,
                     positionButton: this.props.value ? rightPosition : leftPosition,
@@ -140,7 +138,7 @@ class Switches extends React.PureComponent {
                     timing: { duration: duration, ease: easingFunction }
                 } }, (state) => (React.createElement(react_native_1.View, null,
                 React.createElement(react_native_1.View, null,
-                    React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, testID: testID, style: {
+                    React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, style: {
                             backgroundColor: state.color,
                             height: sliderHeight,
                             width: sliderWidth,
@@ -178,7 +176,8 @@ class Switches extends React.PureComponent {
         this.handleSwitch = this.handleSwitch.bind(this);
     }
     render() {
-        return (React.createElement(react_native_1.View, null, this.renderSwitches()));
+        const testID = this.props.testID || defaultTestID;
+        return (React.createElement(react_native_1.View, { testID: testID }, this.renderSwitches()));
     }
 }
 exports.default = Switches;

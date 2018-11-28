@@ -104,8 +104,6 @@ class Switches extends React.PureComponent<IProps, IState> {
     const showText = this.props.showText === false ? this.props.showText : defaultShowText
     const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth
     const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor
-    const testID = this.props.testID || defaultTestID
-
     return (
       <Animate
         show={true}
@@ -136,7 +134,6 @@ class Switches extends React.PureComponent<IProps, IState> {
                   borderRadius: sliderHeight / 2
                 }}/>
                 <TouchableOpacity activeOpacity={1} disabled={disabled}
-                                  testID={testID}
                                   style={{
                                     left: state.positionButton,
                                     position: 'absolute',
@@ -186,7 +183,6 @@ class Switches extends React.PureComponent<IProps, IState> {
     const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth
     const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor
     const icon = this.props.icon ? this.props.icon : null
-    const testID = this.props.testID || defaultTestID
     return (<Animate
       show={true}
       start={{
@@ -204,7 +200,6 @@ class Switches extends React.PureComponent<IProps, IState> {
         <View>
           <View>
             <TouchableOpacity activeOpacity={1} onPress={() => this.handleSwitch()} disabled={disabled}
-                              testID={testID}
                               style={{
                                 backgroundColor: state.color,
                                 height: sliderHeight,
@@ -259,8 +254,9 @@ class Switches extends React.PureComponent<IProps, IState> {
   }
 
   render() {
+    const testID = this.props.testID || defaultTestID
     return (
-      <View>
+      <View testID={testID}>
         {this.renderSwitches()}
       </View>
     )
