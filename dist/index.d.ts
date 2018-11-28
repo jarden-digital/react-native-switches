@@ -21,6 +21,7 @@ export declare type IProps = {
     sliderHeight?: number;
     sliderWidth?: number;
     spaceBetween?: number;
+    testID?: string;
     textFont?: string;
     textOff?: string;
     textOn?: string;

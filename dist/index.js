@@ -34,6 +34,7 @@ const defaultSwitchHeightLine = 6;
 const defaultSwitchHeightPill = 36;
 const defaultSwitchWidthLine = 30;
 const defaultSwitchWidthPill = 70;
+const defaultTestID = 'reactNativeSwitches';
 const defaultTextFont = 'courier';
 const defaultTextOffLine = 'No';
 const defaultTextOnLine = 'Yes';
@@ -88,7 +89,7 @@ class Switches extends React.PureComponent {
                                 backgroundColor: this.props.value ? colorSwitchOn : colorSwitchOff,
                                 borderRadius: sliderHeight / 2
                             } }),
-                        React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, disabled: disabled, style: {
+                        React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, disabled: disabled, testID: this.props.testID || defaultTestID, style: {
                                 left: state.positionButton,
                                 position: 'absolute',
                                 top: (sliderHeight - buttonSize) / 2,
@@ -137,7 +138,7 @@ class Switches extends React.PureComponent {
                     timing: { duration: duration, ease: easingFunction }
                 } }, (state) => (React.createElement(react_native_1.View, null,
                 React.createElement(react_native_1.View, null,
-                    React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, style: {
+                    React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, testID: this.props.testID || defaultTestID, style: {
                             backgroundColor: state.color,
                             height: sliderHeight,
                             width: sliderWidth,

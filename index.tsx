@@ -24,6 +24,7 @@ export type IProps = {
   sliderHeight?: number
   sliderWidth?: number
   spaceBetween?: number
+  testID?: string
   textFont?: string
   textOff?: string
   textOn?: string
@@ -63,6 +64,7 @@ const defaultSwitchHeightLine = 6
 const defaultSwitchHeightPill = 36
 const defaultSwitchWidthLine = 30
 const defaultSwitchWidthPill = 70
+const defaultTestID = 'reactNativeSwitches'
 const defaultTextFont = 'courier'
 const defaultTextOffLine = 'No'
 const defaultTextOnLine = 'Yes'
@@ -102,7 +104,7 @@ class Switches extends React.PureComponent<IProps, IState> {
     const showText = this.props.showText === false ? this.props.showText : defaultShowText
     const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth
     const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor
-    
+
     return (
       <Animate
         show={true}
@@ -132,17 +134,19 @@ class Switches extends React.PureComponent<IProps, IState> {
                   backgroundColor: this.props.value ? colorSwitchOn : colorSwitchOff,
                   borderRadius: sliderHeight / 2
                 }}/>
-                <TouchableOpacity activeOpacity={1} disabled={disabled} style={{
-                  left: state.positionButton,
-                  position: 'absolute',
-                  top: (sliderHeight - buttonSize) / 2,
-                  width: buttonSize,
-                  height: buttonSize,
-                  borderRadius: buttonSize / 2,
-                  backgroundColor: buttonColor,
-                  borderWidth: borderWidth,
-                  borderColor: borderColor
-                }} onPress={() => this.handleSwitch()}/>
+                <TouchableOpacity activeOpacity={1} disabled={disabled}
+                                  testID={this.props.testID || defaultTestID}
+                                  style={{
+                                    left: state.positionButton,
+                                    position: 'absolute',
+                                    top: (sliderHeight - buttonSize) / 2,
+                                    width: buttonSize,
+                                    height: buttonSize,
+                                    borderRadius: buttonSize / 2,
+                                    backgroundColor: buttonColor,
+                                    borderWidth: borderWidth,
+                                    borderColor: borderColor
+                                  }} onPress={() => this.handleSwitch()}/>
               </View>
               {showText && <Text style={{fontFamily: textFont, color: state.colorYes, marginLeft: spaceBetween / 2}}>
                 {textOn}
@@ -198,6 +202,7 @@ class Switches extends React.PureComponent<IProps, IState> {
         <View>
           <View>
             <TouchableOpacity activeOpacity={1} onPress={() => this.handleSwitch()} disabled={disabled}
+                              testID={this.props.testID || defaultTestID}
                               style={{
                                 backgroundColor: state.color,
                                 height: sliderHeight,

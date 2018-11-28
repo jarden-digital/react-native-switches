@@ -57,6 +57,7 @@ import Switches from 'react-native-switches'
 |**`sliderHeight`**|Height of the slider of the switch|Line shape: `6` / Pill shape: `36`|`false`|`number`|
 |**`sliderWidth`**|Width of the slider of the switch|Line shape: `30` / Pill shape: `70`|`false`|`number`|
 |**`spaceBetween`**|Space between the two texts of the switch|Line shape: `10` / Pill shape: `10`|`false`|`number`|
+|**`testID`**|Text used for the testID property of the button|`reactNativeSwitches`|`false`|`string`|
 |**`textFont`**|Font used for the text of the switch|`courier`|`false`|`string`|
 |**`textOff`**|Text used for the `off` position of the switch|Line shape: `No` / Pill shape: `off`|`false`|`string`|
 |**`textOn`**|Text used for the `on` position of the switch|Line shape: `Yes` / Pill shape: `on`|`false`|`string`|
