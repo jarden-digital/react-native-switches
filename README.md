@@ -30,7 +30,7 @@ It also requires you to provide a boolean _**value**_ for the switch and an _**o
 
 ```
 import Switches from 'react-native-switches'
-<Switches shape={'pill'} onChange={() => this.setState({switchValue: !this.state.switchValue}} value={this.state.switchValue}/>
+<Switches shape={'pill'} onChange={() => this.setState({switchValue: !this.state.switchValue})} value={this.state.switchValue}/>
 ```
 
 ## Options
