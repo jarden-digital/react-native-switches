@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import * as React from 'react';
 export declare type IProps = {
     animationDuration?: number;
@@ -16,6 +15,8 @@ export declare type IProps = {
     easingFunction?: () => void;
     icon?: any;
     onChange: () => void;
+    paddingTextOff: number;
+    paddingTextOn: number;
     shape: string;
     showText?: boolean;
     sliderHeight?: number;

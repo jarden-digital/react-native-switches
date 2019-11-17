@@ -19,6 +19,8 @@ export type IProps = {
   easingFunction?: () => void
   icon?: any
   onChange: () => void
+  paddingTextOff: number
+  paddingTextOn: number
   shape: string
   showText?: boolean
   sliderHeight?: number
@@ -57,6 +59,8 @@ const defaultColorTextOnPill = '#FFF'
 const defaultDisabledValue = false
 const defaultDuration = 300
 const defaultEasingFunction = easeQuadIn
+const defaultPaddingTextOff = 0
+const defaultPaddingTextOn = 0
 const defaultShowText = true
 const defaultSpaceBetweenLine = 10
 const defaultSpaceBetweenPill = 10
@@ -183,6 +187,8 @@ class Switches extends React.PureComponent<IProps, IState> {
     const borderWidth = this.props.borderWidth ? this.props.borderWidth : defaultBorderWidth
     const borderColor = this.props.borderColor ? this.props.borderColor : defaultBorderColor
     const icon = this.props.icon ? this.props.icon : null
+    const paddingTextOn = this.props.paddingTextOn || defaultPaddingTextOn
+    const paddingTextOff = this.props.paddingTextOff || defaultPaddingTextOff
     return (<Animate
       show={true}
       start={{
@@ -211,14 +217,26 @@ class Switches extends React.PureComponent<IProps, IState> {
                                 borderColor: borderColor
                               }}>
               {showText && <View style={{flexDirection: 'row'}}>
-                <Text
-                  style={{fontFamily: textFont, fontSize: textSize, color: colorTextOn, marginRight: spaceBetween / 2}}>
-                  {textOn}
-                </Text>
-                <Text
-                  style={{fontFamily: textFont, fontSize: textSize, color: colorTextOff, marginLeft: spaceBetween / 2}}>
-                  {textOff}
-                </Text>
+                  <Text
+                      style={{
+                        fontFamily: textFont,
+                        fontSize: textSize,
+                        paddingLeft: paddingTextOn,
+                        color: colorTextOn,
+                        marginRight: spaceBetween / 2
+                      }}>
+                    {this.props.value ? textOn : ''}
+                  </Text>
+                  <Text
+                      style={{
+                        fontFamily: textFont,
+                        fontSize: textSize,
+                        paddingRight: paddingTextOff,
+                        color: colorTextOff,
+                        marginLeft: spaceBetween / 2
+                      }}>
+                    {textOff}
+                  </Text>
               </View>}
               <View style={{
                 left: state.positionButton,
@@ -230,7 +248,7 @@ class Switches extends React.PureComponent<IProps, IState> {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                {icon}
+                {this.props.value ? '' : icon}
               </View>
             </TouchableOpacity>
           </View>

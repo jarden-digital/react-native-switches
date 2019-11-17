@@ -52,6 +52,8 @@ import Switches from 'react-native-switches'
 |**`easingFunction`**|Easing function for the animation|`easeQuadIn` [d3-ease function](https://github.com/d3/d3-ease#easeQuadIn)|`false`|`function`|
 |**`icon`**|Icon to be placed on the button|*None*|`false`|`any`|
 |**`onChange`**|Function triggered when the switch is tapped|*None*|`true`|`function`|
+|**`paddingTextOff`**|Padding right foe the off text on pill switch|Pill shape: `0`|`false`|`number`|
+|**`paddingTextOn`**|Padding left for the on text on pill switch|Pill shape: `0`|`false`|`number`|
 |**`shape`**|Shape of the switch (`line` or `pill`)|*None*|`true`|`Shapes` enum|
 |**`showText`**|Boolean indicating if the text should be visible or not|`true`|`false`|`boolean`|
 |**`sliderHeight`**|Height of the slider of the switch|Line shape: `6` / Pill shape: `36`|`false`|`number`|
