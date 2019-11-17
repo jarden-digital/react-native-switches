@@ -15,8 +15,8 @@ export declare type IProps = {
     easingFunction?: () => void;
     icon?: any;
     onChange: () => void;
-    paddingTextOff: number;
-    paddingTextOn: number;
+    paddingTextOff?: number;
+    paddingTextOn?: number;
     shape: string;
     showText?: boolean;
     sliderHeight?: number;

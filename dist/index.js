@@ -121,8 +121,8 @@ class Switches extends React.PureComponent {
             const textSize = this.props.textSize || defaultTextSize;
             const colorTextOn = this.props.colorTextOn || defaultColorTextOnPill;
             const colorTextOff = this.props.colorTextOff || defaultColorTextOffPill;
-            const textOn = this.props.textOn || defaultTextOnPill;
-            const textOff = this.props.textOff || defaultTextOffPill;
+            const textOn = this.props.value ? (this.props.textOn || defaultTextOnPill) : '';
+            const textOff = this.props.value ? '' : (this.props.textOff || defaultTextOffPill);
             const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill;
             const buttonColor = this.props.buttonColor || defaultButtonColorPill;
             const showText = this.props.showText === false ? this.props.showText : defaultShowText;
@@ -152,21 +152,20 @@ class Switches extends React.PureComponent {
                             borderWidth: borderWidth,
                             borderColor: borderColor
                         } },
-                        showText && React.createElement(react_native_1.View, { style: { flexDirection: 'row' } },
-                            React.createElement(react_native_1.Text, { style: {
-                                    fontFamily: textFont,
-                                    fontSize: textSize,
-                                    paddingLeft: paddingTextOn,
-                                    color: colorTextOn,
-                                    marginRight: spaceBetween / 2
-                                } }, this.props.value ? textOn : ''),
-                            React.createElement(react_native_1.Text, { style: {
-                                    fontFamily: textFont,
-                                    fontSize: textSize,
-                                    paddingRight: paddingTextOff,
-                                    color: colorTextOff,
-                                    marginLeft: spaceBetween / 2
-                                } }, textOff)),
+                        showText &&
+                            React.createElement(react_native_1.View, { style: { flexDirection: 'row', paddingLeft: paddingTextOn, paddingRight: paddingTextOff } },
+                                React.createElement(react_native_1.Text, { style: {
+                                        fontFamily: textFont,
+                                        fontSize: textSize,
+                                        color: colorTextOn,
+                                        marginRight: spaceBetween / 2
+                                    } }, textOn),
+                                React.createElement(react_native_1.Text, { style: {
+                                        fontFamily: textFont,
+                                        fontSize: textSize,
+                                        color: colorTextOff,
+                                        marginLeft: spaceBetween / 2
+                                    } }, textOff)),
                         React.createElement(react_native_1.View, { style: {
                                 left: state.positionButton,
                                 position: 'absolute',
@@ -176,7 +175,7 @@ class Switches extends React.PureComponent {
                                 borderRadius: buttonSize / 2,
                                 alignItems: 'center',
                                 justifyContent: 'center'
-                            } }, this.props.value ? '' : icon))),
+                            } }, icon))),
                 React.createElement(react_native_1.View, { style: { opacity: state.opacityChildren } }, this.props.children)))));
         };
         this.renderSwitches = () => {

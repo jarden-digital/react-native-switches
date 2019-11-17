@@ -19,8 +19,8 @@ export type IProps = {
   easingFunction?: () => void
   icon?: any
   onChange: () => void
-  paddingTextOff: number
-  paddingTextOn: number
+  paddingTextOff?: number
+  paddingTextOn?: number
   shape: string
   showText?: boolean
   sliderHeight?: number
@@ -179,8 +179,8 @@ class Switches extends React.PureComponent<IProps, IState> {
     const textSize = this.props.textSize || defaultTextSize
     const colorTextOn = this.props.colorTextOn || defaultColorTextOnPill
     const colorTextOff = this.props.colorTextOff || defaultColorTextOffPill
-    const textOn = this.props.textOn || defaultTextOnPill
-    const textOff = this.props.textOff || defaultTextOffPill
+    const textOn = this.props.value ? (this.props.textOn || defaultTextOnPill) : ''
+    const textOff = this.props.value ? '' : (this.props.textOff || defaultTextOffPill)
     const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill
     const buttonColor = this.props.buttonColor || defaultButtonColorPill
     const showText = this.props.showText === false ? this.props.showText : defaultShowText
@@ -216,22 +216,21 @@ class Switches extends React.PureComponent<IProps, IState> {
                                 borderWidth: borderWidth,
                                 borderColor: borderColor
                               }}>
-              {showText && <View style={{flexDirection: 'row'}}>
+              {showText &&
+              <View style={{flexDirection: 'row', paddingLeft: paddingTextOn, paddingRight: paddingTextOff}}>
                   <Text
                       style={{
                         fontFamily: textFont,
                         fontSize: textSize,
-                        paddingLeft: paddingTextOn,
                         color: colorTextOn,
                         marginRight: spaceBetween / 2
                       }}>
-                    {this.props.value ? textOn : ''}
+                    {textOn}
                   </Text>
                   <Text
                       style={{
                         fontFamily: textFont,
                         fontSize: textSize,
-                        paddingRight: paddingTextOff,
                         color: colorTextOff,
                         marginLeft: spaceBetween / 2
                       }}>
@@ -248,7 +247,7 @@ class Switches extends React.PureComponent<IProps, IState> {
                 alignItems: 'center',
                 justifyContent: 'center'
               }}>
-                {this.props.value ? '' : icon}
+                {icon}
               </View>
             </TouchableOpacity>
           </View>
