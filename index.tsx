@@ -221,7 +221,13 @@ class Switches extends React.PureComponent<IProps, IState> {
                                 borderColor: borderColor
                               }}>
               {showText &&
-              <View style={{flexDirection: 'row', paddingLeft: paddingTextOn, paddingRight: paddingTextOff}}>
+              <View style={{
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+                paddingLeft: paddingTextOn,
+                paddingRight: paddingTextOff
+              }}>
                   <Text
                       style={{
                         fontFamily: textFont,

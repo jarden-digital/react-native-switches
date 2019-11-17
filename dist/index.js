@@ -157,7 +157,13 @@ class Switches extends React.PureComponent {
                             borderColor: borderColor
                         } },
                         showText &&
-                            React.createElement(react_native_1.View, { style: { flexDirection: 'row', paddingLeft: paddingTextOn, paddingRight: paddingTextOff } },
+                            React.createElement(react_native_1.View, { style: {
+                                    flexDirection: 'row',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    paddingLeft: paddingTextOn,
+                                    paddingRight: paddingTextOff
+                                } },
                                 React.createElement(react_native_1.Text, { style: {
                                         fontFamily: textFont,
                                         fontSize: textSize,
