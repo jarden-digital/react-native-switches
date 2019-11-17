@@ -121,8 +121,8 @@ class Switches extends React.PureComponent {
             const textSize = this.props.textSize || defaultTextSize;
             const colorTextOn = this.props.colorTextOn || defaultColorTextOnPill;
             const colorTextOff = this.props.colorTextOff || defaultColorTextOffPill;
-            const textOn = this.props.value ? (this.props.textOn || defaultTextOnPill) : '';
-            const textOff = this.props.value ? '' : (this.props.textOff || defaultTextOffPill);
+            const textOn = this.props.textOn || defaultTextOnPill;
+            const textOff = this.props.textOff || defaultTextOffPill;
             const spaceBetween = this.props.spaceBetween || defaultSpaceBetweenPill;
             const buttonColor = this.props.buttonColor || defaultButtonColorPill;
             const showText = this.props.showText === false ? this.props.showText : defaultShowText;
@@ -134,11 +134,15 @@ class Switches extends React.PureComponent {
             return (React.createElement(react_move_1.Animate, { show: true, start: {
                     color: this.props.value ? onColor : offColor,
                     positionButton: this.props.value ? rightPosition : leftPosition,
-                    opacityChildren: this.props.value ? 1 : 0
+                    opacityChildren: this.props.value ? 1 : 0,
+                    opacityTextOn: this.props.value ? 1 : 0,
+                    opacityTextOff: this.props.value ? 0 : 1
                 }, update: {
                     color: [this.props.value ? onColor : offColor],
                     positionButton: [this.props.value ? rightPosition : leftPosition],
                     opacityChildren: [this.props.value ? 1 : 0],
+                    opacityTextOn: [this.props.value ? 1 : 0],
+                    opacityTextOff: [this.props.value ? 0 : 1],
                     timing: { duration: duration, ease: easingFunction }
                 } }, (state) => (React.createElement(react_native_1.View, null,
                 React.createElement(react_native_1.View, null,
@@ -158,13 +162,15 @@ class Switches extends React.PureComponent {
                                         fontFamily: textFont,
                                         fontSize: textSize,
                                         color: colorTextOn,
-                                        marginRight: spaceBetween / 2
+                                        marginRight: spaceBetween / 2,
+                                        opacity: state.opacityTextOn
                                     } }, textOn),
                                 React.createElement(react_native_1.Text, { style: {
                                         fontFamily: textFont,
                                         fontSize: textSize,
                                         color: colorTextOff,
-                                        marginLeft: spaceBetween / 2
+                                        marginLeft: spaceBetween / 2,
+                                        opacity: state.opacityTextOff
                                     } }, textOff)),
                         React.createElement(react_native_1.View, { style: {
                                 left: state.positionButton,
