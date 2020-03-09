@@ -1,6 +1,6 @@
 {
   "name": "react-native-switches",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "React native switches component",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
