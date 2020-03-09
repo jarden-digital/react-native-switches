@@ -2,6 +2,7 @@ import * as React from 'react'
 import {View, Text, TouchableOpacity} from 'react-native'
 import {Animate} from 'react-move'
 import {easeQuadIn} from 'd3-ease'
+import {interpolate} from 'd3-interpolate'
 
 export type IProps = {
   animationDuration?: number
@@ -123,7 +124,8 @@ class Switches extends React.PureComponent<IProps, IState> {
           positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : buttonOffsetLeft],
           opacityChildren: this.props.value ? [1] : [0],
           timing: {duration: duration, ease: easingFunction}
-        }}>
+        }}
+        interpolation={(begValue, endValue, attr) => interpolate(begValue, endValue)}>
         {(state: any) => (
           <View>
             <View style={{alignItems: 'center', flexDirection: 'row'}}>
@@ -192,20 +194,21 @@ class Switches extends React.PureComponent<IProps, IState> {
     return (<Animate
       show={true}
       start={{
-        color: this.props.value ? onColor : offColor,
+        color: `${this.props.value ? onColor : offColor}`,
         positionButton: this.props.value ? rightPosition : leftPosition,
         opacityChildren: this.props.value ? 1 : 0,
         opacityTextOn: this.props.value ? 1 : 0,
         opacityTextOff: this.props.value ? 0 : 1
       }}
       update={{
-        color: [this.props.value ? onColor : offColor],
+        color: [`${this.props.value ? onColor : offColor}`],
         positionButton: [this.props.value ? rightPosition : leftPosition],
         opacityChildren: [this.props.value ? 1 : 0],
         opacityTextOn: [this.props.value ? 1 : 0],
         opacityTextOff: [this.props.value ? 0 : 1],
         timing: {duration: duration, ease: easingFunction}
-      }}>
+      }}
+      interpolation={(begValue, endValue, attr) => interpolate(begValue, endValue)}>
       {(state: any) => (
         <View>
           <View>

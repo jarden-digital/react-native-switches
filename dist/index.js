@@ -4,6 +4,7 @@ const React = require("react");
 const react_native_1 = require("react-native");
 const react_move_1 = require("react-move");
 const d3_ease_1 = require("d3-ease");
+const d3_interpolate_1 = require("d3-interpolate");
 var Shapes;
 (function (Shapes) {
     Shapes["pill"] = "pill";
@@ -81,7 +82,7 @@ class Switches extends React.PureComponent {
                     positionButton: [this.props.value ? sliderWidth - buttonOffsetRight - buttonSize / 2 : buttonOffsetLeft],
                     opacityChildren: this.props.value ? [1] : [0],
                     timing: { duration: duration, ease: easingFunction }
-                } }, (state) => (React.createElement(react_native_1.View, null,
+                }, interpolation: (begValue, endValue, attr) => d3_interpolate_1.interpolate(begValue, endValue) }, (state) => (React.createElement(react_native_1.View, null,
                 React.createElement(react_native_1.View, { style: { alignItems: 'center', flexDirection: 'row' } },
                     showText && React.createElement(react_native_1.Text, { style: { fontFamily: textFont, color: state.colorNo, marginRight: spaceBetween / 2 } }, textOff),
                     React.createElement(react_native_1.View, { style: { paddingRight: spaceBetween / 2, paddingLeft: spaceBetween / 2 } },
@@ -132,19 +133,19 @@ class Switches extends React.PureComponent {
             const paddingTextOn = this.props.paddingTextOn || defaultPaddingTextOn;
             const paddingTextOff = this.props.paddingTextOff || defaultPaddingTextOff;
             return (React.createElement(react_move_1.Animate, { show: true, start: {
-                    color: this.props.value ? onColor : offColor,
+                    color: `${this.props.value ? onColor : offColor}`,
                     positionButton: this.props.value ? rightPosition : leftPosition,
                     opacityChildren: this.props.value ? 1 : 0,
                     opacityTextOn: this.props.value ? 1 : 0,
                     opacityTextOff: this.props.value ? 0 : 1
                 }, update: {
-                    color: [this.props.value ? onColor : offColor],
+                    color: [`${this.props.value ? onColor : offColor}`],
                     positionButton: [this.props.value ? rightPosition : leftPosition],
                     opacityChildren: [this.props.value ? 1 : 0],
                     opacityTextOn: [this.props.value ? 1 : 0],
                     opacityTextOff: [this.props.value ? 0 : 1],
                     timing: { duration: duration, ease: easingFunction }
-                } }, (state) => (React.createElement(react_native_1.View, null,
+                }, interpolation: (begValue, endValue, attr) => d3_interpolate_1.interpolate(begValue, endValue) }, (state) => (React.createElement(react_native_1.View, null,
                 React.createElement(react_native_1.View, null,
                     React.createElement(react_native_1.TouchableOpacity, { activeOpacity: 1, onPress: () => this.handleSwitch(), disabled: disabled, style: {
                             backgroundColor: state.color,
